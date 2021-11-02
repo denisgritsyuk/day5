@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" id="style" href="./style1.css">
+    </head>
+    <body>
+        <input type="radio" name="style1" value="st1" onclick="getstyle()">
+        <input type="radio" name="style1" value="st2"  onclick="getstyle()">
+    </body>
+    <script>
+        let styleId = "st1";
+        
+        window.onload = function getstyle() {
+            let radios = document.getElementsByName("style1");
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].value == localStorage.getItem("style_id")) {
+                   radios[i].checked = true;
+                    
+                    break;
+                  }
+             }
+           
+             styleId = localStorage.getItem("style_id");
+             console.log(styleId);
+            if (styleId == 'st1'){
+                document.getElementById("style").href = '/style1.css';
+            }
+            else { document.getElementById("style").href = '/style2.css';}
+        } 
+        function getstyle() {
+            
+            if(localStorage.getItem("style_id" !== '')) {  styleId = localStorage.getItem("style_id", styleId); }
+           
+            let radios = document.getElementsByName("style1");
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    styleId = (radios[i].value);
+                    localStorage.setItem("style_id", styleId);
+                    break;
+                  }
+             }
+             console.log(styleId);
+            if (styleId == 'st1'){
+                document.getElementById("style").href = '/style1.css';
+            }
+            else { document.getElementById("style").href = '/style2.css';}
+        } 
+    </script>
+</html>
